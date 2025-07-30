@@ -104,6 +104,7 @@ Swagger provides a user-friendly interface for making requests, viewing schemas,
 🔐 Authentication Endpoints
 • POST /auth/register
 Allows new users to register by providing their email and password.
+
 • POST /auth/login
 Authenticates a user and returns a JWT token. This token must be used in the Authorization header for protected routes.
 
@@ -111,14 +112,20 @@ Authenticates a user and returns a JWT token. This token must be used in the Aut
 
 ✂️ URL Shortening Endpoints
 • POST /api/shorten
+
 Creates a short URL from a long one. This endpoint requires authentication. Include your JWT token as Authorization: Bearer <token>.
+
 • GET /r/:shortCode
+
 Publicly accessible endpoint that redirects to the original long URL based on the provided short code.
 
 ---
 
 📊 URL Analytics Endpoints
 • GET /api/stats/:shortCode
+
 Returns visit statistics for a specific short URL. Only the user who created the short URL can access its stats. Authentication is required.
+
 • GET /api/debug/:shortCode
+
 A public debug endpoint to fetch information about a shortened URL, useful for testing without authentication.
