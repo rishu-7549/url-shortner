@@ -28,36 +28,27 @@
 A secure and scalable URL Shortener backend built using NestJS, MongoDB, and JWT-based authentication, inspired by services like Bit.ly. The system enables users to convert long URLs into short, shareable links, track usage statistics, and ensure secure access through authentication and rate limiting.
 
 ✅ Key Features:
-Short URL Generation: Converts long URLs into custom or auto-generated short codes.
-
-Redirection Logic: Redirects users to the original URL via /r/:shortCode.
-
-User Authentication: Secure login and registration endpoints with JWT token support (/auth/register, /auth/login).
-
-Authorization-Protected Endpoints: Only authenticated users can shorten URLs or view stats.
-
-API Token Handling: JWT is required in headers for protected routes like /api/shorten and /api/stats/:shortCode.
-
-Stats & Debug Endpoints: Track number of visits per short URL (/api/stats/:shortCode and /api/debug/:shortCode).
-
-Rate Limiting: Prevents abuse using @nestjs/throttler to limit API calls per user.
-
-Swagger Documentation: Fully documented APIs accessible at /docs.
+• Short URL Generation: Converts long URLs into custom or auto-generated short codes.
+• Redirection Logic: Redirects users to the original URL via /r/:shortCode.
+• User Authentication: Secure login and registration endpoints with JWT token support (/auth/register, /auth/login).
+• Authorization-Protected Endpoints: Only authenticated users can shorten URLs or view stats.
+• API Token Handling: JWT is required in headers for protected routes like /api/shorten and /api/stats/:shortCode.
+• Stats & Debug Endpoints: Track number of visits per short URL (/api/stats/:shortCode and /api/ debug/:shortCode).
+• Rate Limiting: Prevents abuse using @nestjs/throttler to limit API calls per user.
+• Swagger Documentation: Fully documented APIs accessible at /docs.
 
 🛠️ Tech Stack:
-Backend Framework: NestJS (TypeScript)
-
-Database: MongoDB (Mongoose ODM)
-
-Authentication: JWT (Passport.js Strategy)
-
-Rate Limiting: @nestjs/throttler
-
-API Docs: Swagger (OpenAPI 3)
-
-Validation & Error Handling: NestJS Pipes and Filters
+• Backend Framework: NestJS (TypeScript)
+• Database: MongoDB (Mongoose ODM)
+• Authentication: JWT (Passport.js Strategy)
+• Rate Limiting: @nestjs/throttler
+• API Docs: Swagger (OpenAPI 3)
+• Validation & Error Handling: NestJS Pipes and Filters
 
 ## Project setup
+
+clone this repository--
+https://github.com/rishu-7549/url-shortner.git
 
 ```bash
 $ npm install
@@ -89,42 +80,33 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Deployment
+Deployed Link--- https://url-shortner-8a76.onrender.com
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Swagger Documentation
+You can explore and test all your API endpoints through Swagger.
+Just visit: http://localhost:3000/docs
+Swagger provides a user-friendly interface for making requests, viewing schemas, and trying out secured endpoints with JWT tokens.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+---
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+🔐 Authentication Endpoints
+• POST /auth/register
+Allows new users to register by providing their email and password.
+• POST /auth/login
+Authenticates a user and returns a JWT token. This token must be used in the Authorization header for protected routes.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+✂️ URL Shortening Endpoints
+• POST /api/shorten
+Creates a short URL from a long one. This endpoint requires authentication. Include your JWT token as Authorization: Bearer <token>.
+• GET /r/:shortCode
+Publicly accessible endpoint that redirects to the original long URL based on the provided short code.
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+📊 URL Analytics Endpoints
+• GET /api/stats/:shortCode
+Returns visit statistics for a specific short URL. Only the user who created the short URL can access its stats. Authentication is required.
+• GET /api/debug/:shortCode
+A public debug endpoint to fetch information about a shortened URL, useful for testing without authentication.
