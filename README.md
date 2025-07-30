@@ -25,6 +25,38 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+A secure and scalable URL Shortener backend built using NestJS, MongoDB, and JWT-based authentication, inspired by services like Bit.ly. The system enables users to convert long URLs into short, shareable links, track usage statistics, and ensure secure access through authentication and rate limiting.
+
+✅ Key Features:
+Short URL Generation: Converts long URLs into custom or auto-generated short codes.
+
+Redirection Logic: Redirects users to the original URL via /r/:shortCode.
+
+User Authentication: Secure login and registration endpoints with JWT token support (/auth/register, /auth/login).
+
+Authorization-Protected Endpoints: Only authenticated users can shorten URLs or view stats.
+
+API Token Handling: JWT is required in headers for protected routes like /api/shorten and /api/stats/:shortCode.
+
+Stats & Debug Endpoints: Track number of visits per short URL (/api/stats/:shortCode and /api/debug/:shortCode).
+
+Rate Limiting: Prevents abuse using @nestjs/throttler to limit API calls per user.
+
+Swagger Documentation: Fully documented APIs accessible at /docs.
+
+🛠️ Tech Stack:
+Backend Framework: NestJS (TypeScript)
+
+Database: MongoDB (Mongoose ODM)
+
+Authentication: JWT (Passport.js Strategy)
+
+Rate Limiting: @nestjs/throttler
+
+API Docs: Swagger (OpenAPI 3)
+
+Validation & Error Handling: NestJS Pipes and Filters
+
 ## Project setup
 
 ```bash
